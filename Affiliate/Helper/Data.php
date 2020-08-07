@@ -137,8 +137,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     protected $objectManager;
 
     /**
-    * @var \Magento\Framework\Module\Manager
-    */
+     * @var \Magento\Framework\Module\Manager
+     */
     protected $modelManager;
 
     /**
@@ -540,8 +540,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                                 ->setWithdrawnTime($now)->save();
                         }
                     }else{
-                            $withdrawn->setStatus(Status::COMPLETE)
-                                ->setWithdrawnTime($now)->save();
+                        $withdrawn->setStatus(Status::COMPLETE)
+                            ->setWithdrawnTime($now)->save();
                     }
                 } else {
                     $withdrawn->setStatus(Status::COMPLETE)
@@ -1215,11 +1215,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
         $publicCookieMetadata = $this->_cookieMetadataFactory->createPublicCookieMetadata()
             ->setDuration($duration);
-            //->setPath($path)
-            //->setSecure(true)
-            //->setHttpOnly(true)
-            //->setPath($this->sessionManager->getCookiePath())
-            //>setDomain($this->sessionManager->getCookieDomain());
+        //->setPath($path)
+        //->setSecure(true)
+        //->setHttpOnly(true)
+        //->setPath($this->sessionManager->getCookiePath())
+        //>setDomain($this->sessionManager->getCookieDomain());
         $this->_cookieManager->setPublicCookie(
             $name,
             $value,
@@ -1367,6 +1367,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $sender = $this->getStoreConfig('affiliate/customer/email_sender', $storeCode);
         $emailTemplate = 'affiliate/customer/email_template_withdrawn_cancel';
         $senderName = $this->getStoreConfig('trans_email/ident_'.$sender.'/name', $storeCode);
+        $sender = $this->getStoreConfig('trans_email/ident_'.$sender.'/email', $storeCode);
         $link = $this->_storeFactory->create()->load($storeCode, 'code')->getUrl('affiliate');
 
         $emailData = [
@@ -1401,6 +1402,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $sender = $this->getStoreConfig('affiliate/customer/email_sender', $storeCode);
         $emailTemplate = 'affiliate/customer/email_template_withdrawn_complete';
         $senderName = $this->getStoreConfig('trans_email/ident_'.$sender.'/name', $storeCode);
+        $sender = $this->getStoreConfig('trans_email/ident_'.$sender.'/email', $storeCode);
+
         $link = $this->_storeFactory->create()->load($storeCode, 'code')->getUrl('affiliate/index/withdrawn');
 
         $emailData = [
@@ -1435,6 +1438,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $sender = $this->getStoreConfig('affiliate/customer/email_sender', $storeCode);
         $emailTemplate = 'affiliate/customer/email_template_withdrawn';
         $senderName = $this->getStoreConfig('trans_email/ident_'.$sender.'/name', $storeCode);
+        $sender = $this->getStoreConfig('trans_email/ident_'.$sender.'/email', $storeCode);
         $link = $this->_storeFactory->create()->load($storeCode, 'code')->getUrl('affiliate/index/withdrawn');
 
         $emailData = [
@@ -1469,6 +1473,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $sender = $this->getStoreConfig('affiliate/customer/email_sender', $storeCode);
         $emailTemplate = 'affiliate/customer/email_template_add_program';
         $senderName = $this->getStoreConfig('trans_email/ident_'.$sender.'/name', $storeCode);
+        $sender = $this->getStoreConfig('trans_email/ident_'.$sender.'/email', $storeCode);
         $link = $this->_storeFactory->create()->load($storeCode, 'code')->getUrl('affiliate/index/listprogram');
 
         $emailData = [
@@ -1507,6 +1512,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $storeName = $this->getStoreConfig('general/store_information/name', $storeCode);
         $sender = $this->getStoreConfig('affiliate/customer/email_sender', $storeCode);
         $senderName = $this->getStoreConfig('trans_email/ident_'.$sender.'/name', $storeCode);
+        $sender = $this->getStoreConfig('trans_email/ident_'.$sender.'/email', $storeCode);
         $emailTemplate = 'affiliate/customer/email_template_successful';
 
         $emailData = [
@@ -1539,6 +1545,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $storeName = $this->getStoreConfig('general/store_information/name', $storeCode);
         $sender = $this->getStoreConfig('affiliate/customer/email_sender', $storeCode);
         $senderName = $this->getStoreConfig('trans_email/ident_'.$sender.'/name', $storeCode);
+        $sender = $this->getStoreConfig('trans_email/ident_'.$sender.'/email', $storeCode);
         $emailTemplate = 'affiliate/customer/email_template_unsuccessful';
 
         $emailData = [
@@ -1571,6 +1578,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $storeName = $this->getStoreConfig('general/store_information/name', $storeCode);
         $sender = $this->getStoreConfig('affiliate/customer/email_sender', $storeCode);
         $senderName = $this->getStoreConfig('trans_email/ident_'.$sender.'/name', $storeCode);
+        $sender = $this->getStoreConfig('trans_email/ident_'.$sender.'/email', $storeCode);
         $emailTemplate = 'affiliate/customer/email_template_lock';
 
         $emailData = [
@@ -1603,6 +1611,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $storeName = $this->getStoreConfig('general/store_information/name', $storeCode);
         $sender = $this->getStoreConfig('affiliate/customer/email_sender', $storeCode);
         $senderName = $this->getStoreConfig('trans_email/ident_'.$sender.'/name', $storeCode);
+        $sender = $this->getStoreConfig('trans_email/ident_'.$sender.'/email', $storeCode);
         $emailTemplate = 'affiliate/customer/email_template_unlock';
 
         $emailData = [
@@ -1635,6 +1644,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $storeName = $this->getStoreConfig('general/store_information/name', $storeCode);
         $sender = $this->getStoreConfig('affiliate/customer/email_sender', $storeCode);
         $senderName = $this->getStoreConfig('trans_email/ident_'.$sender.'/name', $storeCode);
+        $sender = $this->getStoreConfig('trans_email/ident_'.$sender.'/email', $storeCode);
+        $sender = $this->getEmailUs($sender);
         $emailTemplate = 'affiliate/customer/email_template';
 
         $emailData = [
@@ -1666,7 +1677,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $storeCode = $store->getCode();
         $storeName = $this->getStoreConfig('general/store_information/name', $storeCode);
         $sender = $this->getStoreConfig('affiliate/invitation/email_sender', $storeCode);
-
+        $sender = $this->getEmailUs($sender);
         $emailTemplate = 'affiliate/invitation/email_template';
         if($this->getStoreConfig('affiliate/invitation/using_customer_email')){
             $sender = $data->getSender()->getEmail();
@@ -1680,7 +1691,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             'referral_code' => $data->getReferralCode(),
             'message' => $data->getMessage()
         ];
-
         $this->_sendEmailTransactionNew(
             $sender,
             $emailTo,
@@ -1707,6 +1717,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $storeName = $this->getStoreConfig('general/store_information/name', $storeCode);
         $sender = $this->getStoreConfig('affiliate/admin_customer/email_sender', $storeCode);
         $senderName = $this->getStoreConfig('trans_email/ident_'.$sender.'/name', $storeCode);
+        $sender = $this->getStoreConfig('trans_email/ident_'.$sender.'/email', $storeCode);
         $emailTemplate = 'affiliate/admin_customer/email_template';
 
         $emailData = [
@@ -1760,6 +1771,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $storeName = $this->getStoreConfig('general/store_information/name', $storeCode);
         $sender = $this->getStoreConfig('affiliate/customer/email_sender', $storeCode);
         $senderName = $this->getStoreConfig('trans_email/ident_'.$sender.'/name', $storeCode);
+        $sender = $this->getStoreConfig('trans_email/ident_'.$sender.'/email', $storeCode);
         $emailTemplate = 'affiliate/customer/email_template_credit_balance_changed';
 
         $emailData = [
@@ -1841,15 +1853,15 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $charsLength = (strlen($chars) - 1);
 
         // Start our string
-        $string = $chars{rand(0, $charsLength)};
+        $string = $chars[rand(0, $charsLength)];
 
         // Generate random string
         for ($i = 1; $i < $length; $i = strlen($string)) {
             // Grab a random character from our list
-            $r = $chars{rand(0, $charsLength)};
+            $r = $chars[rand(0, $charsLength)];
 
             // Make sure the same two characters don't appear next to each other
-            if ($r != $string{$i - 1}) {
+            if ($r != $string[$i - 1]) {
                 $string .=  $r;
             }
         }
@@ -2018,7 +2030,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getTimeCookieStore($store_id){
         return $this->getStoreConfig('affiliate/invitation/affiliate_cookie',$store_id);
-
     }
 
 
@@ -2081,7 +2092,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
-     *
+     * @return mixed
      */
     public function getCreditByCheckout()
     {
@@ -2089,7 +2100,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
-     *
+     * @param null $storeCode
+     * @return mixed
      */
     public function getShowCreditBlockCartStore($storeCode = null)
     {
@@ -2097,17 +2109,31 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
-     *
+     * @param null $storeCode
+     * @return mixed
      */
     public function allowUsingCreditToCheckout($storeCode = null){
         return $this->getStoreConfig('affiliate/options/allow_using_credit_to_checkout', $storeCode);
     }
 
     /**
-     *
+     * @param null $storeCode
+     * @return mixed
      */
     public function getMaxCreditToCheckOut($storeCode = null)
     {
         return $this->getStoreConfig('affiliate/options/max_credit_to_checkout',$storeCode);
+    }
+
+    /**
+     * @param $sender
+     * @return mixed
+     */
+    public function getEmailUs($sender)
+    {
+        // @see /magento/module-email/etc/config.xml for various emails
+        // general/support/sales/custom1/custom2
+        $path = 'trans_email/ident_'.$sender.'/email';
+        return $this->scopeConfig->getValue($path,ScopeInterface::SCOPE_STORE);
     }
 }
