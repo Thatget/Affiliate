@@ -9,8 +9,6 @@ class Createaccount extends \MW\Affiliate\Controller\Createaccount
      */
     public function execute()
     {
-
-        $resultRedirect = $this->resultRedirectFactory->create();
         $customer = $this->_customerSession->getId();
         if (!$customer){
             $this->_redirect('customer/account/login');
