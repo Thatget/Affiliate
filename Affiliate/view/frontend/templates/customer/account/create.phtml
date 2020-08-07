@@ -8,13 +8,13 @@ $affiliate = $this->getAffiliateMemberModel()->load($customer->getId());
     <p class="error-msg">
         <?php echo __('You have registered in our Affiliate system. Please wait for the response of administrator.') ?>
     </p>
-<?php return; endif ?>
+    <?php return; endif ?>
 
 <?php if ($affiliate->getStatus() == \MW\Affiliate\Model\Statusactive::NOTAPPROVED) : ?>
     <p class="error-msg">
         <?php echo __('You have not successfully registered. For more details, Please contact with the administrator.') ?>
     </p>
-<?php return; endif ?>
+    <?php return; endif ?>
 
 
 <?php if ($affiliate->getStatus() == \MW\Affiliate\Model\Statusreferral::LOCKED) : ?>
@@ -23,9 +23,9 @@ $affiliate = $this->getAffiliateMemberModel()->load($customer->getId());
     </p>
 <?php else : ?>
     <?php
-        $_dataHelper = $this->helper('MW\Affiliate\Helper\Data');
-        $creditCustomer = $this->getCustomerCredit($customer->getId());
-        $balance = $creditCustomer->getCredit();
+    $_dataHelper = $this->helper('MW\Affiliate\Helper\Data');
+    $creditCustomer = $this->getCustomerCredit($customer->getId());
+    $balance = $creditCustomer->getCredit();
     ?>
 
     <form action="<?php echo $this->getUrl('affiliate/index/createpost') ?>" method="post" name="mw_referral_account" id="form-validate" class="form-edit-account">
@@ -33,11 +33,10 @@ $affiliate = $this->getAffiliateMemberModel()->load($customer->getId());
 
         </fieldset>
 
-        <fieldset class="fieldset affiliate" style="clear: both; float:left;">
 
 
-
-            <?php if($_dataHelper->getStoreConfig('affiliate/money/enable_withdrawal')) : ?>
+        <?php if($_dataHelper->getStoreConfig('affiliate/money/enable_withdrawal')) : ?>
+            <fieldset class="fieldset affiliate" style="clear: both; float:left;">
                 <div class="field required">
                     <label for="getway_withdrawn" class="label"><span><?php echo __('Payment Method') ?></span></label>
                     <div class="control">
@@ -45,11 +44,11 @@ $affiliate = $this->getAffiliateMemberModel()->load($customer->getId());
                             <option value=""><?php echo __('Please select a payment method') ?></option>
                             <?php $gateways = $_dataHelper->getGatewayStore(); ?>
                             <?php if($gateways) : ?>
-                            <?php foreach ($gateways as $gateway) : ?>
-                                <?php if(strtolower(trim($gateway['mw_status'])) == 'yes') : ?>
-                                    <option <?php if($affiliate->getPaymentGateway() == $gateway['gateway_value']) echo 'selected="selected"'?> value="<?php echo $gateway['gateway_value'];?>"><?php echo $gateway['gateway_title'];?></option>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
+                                <?php foreach ($gateways as $gateway) : ?>
+                                    <?php if(strtolower(trim($gateway['mw_status'])) == 'yes') : ?>
+                                        <option <?php if($affiliate->getPaymentGateway() == $gateway['gateway_value']) echo 'selected="selected"'?> value="<?php echo $gateway['gateway_value'];?>"><?php echo $gateway['gateway_title'];?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             <?php endif; ?>
                         </select>
                     </div>
@@ -149,18 +148,19 @@ $affiliate = $this->getAffiliateMemberModel()->load($customer->getId());
                 </div>
 
 
-            <?php endif; ?>
+                <p><?php echo __('* Note: Affiliate may use balance as store credit in shopping cart.') ?></p>
+            </fieldset>
 
-            <p><?php echo __('* Note: Affiliate may use balance as store credit in shopping cart.') ?></p>
-        </fieldset>
-
-        <div class="action-toolbar">
-            <div class="primary">
-                <button type="submit" title="<?php echo __('Save') ?>" id="referral_acount" class="action save primary">
-                    <span><?php echo __('Save') ?></span>
-                </button>
+            <div class="action-toolbar">
+                <div class="primary">
+                    <button type="submit" title="<?php echo __('Save') ?>" id="referral_acount" class="action save primary">
+                        <span><?php echo __('Save') ?></span>
+                    </button>
+                </div>
             </div>
-        </div>
+
+        <?php endif; ?>
+
     </form>
 
     <?php if($_dataHelper->getStoreConfig('affiliate/money/enable_withdrawal')) : ?>

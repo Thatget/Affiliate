@@ -165,7 +165,7 @@ $affiliate = $this->getAffiliateMemberModel()->load($customer->getId());
 
             <p><?php echo __('* Note: Affiliate may use balance as store credit in shopping cart.') ?></p>
         </fieldset>
-
+        <?php if($_dataHelper->getStoreConfig('affiliate/money/enable_withdrawal')) : ?>
         <div class="action-toolbar">
             <div class="primary">
                 <button type="submit" title="<?php echo __('Save') ?>" id="referral_acount" class="action save primary">
@@ -173,6 +173,7 @@ $affiliate = $this->getAffiliateMemberModel()->load($customer->getId());
                 </button>
             </div>
         </div>
+        <?php endif; ?>
     </form>
 
     <?php if($_dataHelper->getStoreConfig('affiliate/money/enable_withdrawal')) : ?>
