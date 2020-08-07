@@ -103,7 +103,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
      */
     protected function _prepareMassaction()
     {
-        $this->setMassactionIdField('affiliategroupGrid');
+        $this->setMassactionIdField('group_id');
         $this->getMassactionBlock()->setFormFieldName('group_id');
 
         $this->getMassactionBlock()->addItem(
