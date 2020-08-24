@@ -15,14 +15,13 @@
                 <default_group>1</default_group>
                 <set_customerinvited>0</set_customerinvited>
                 <referral_code>6</referral_code>
-                <affiliate_share><![CDATA[/customer
-                                        /affiliate
-                                        /credit
-                                        /checkout
-                                        /wishlist
-                                        /contacts
-                                        /catalogsearch
-                                        /seo_sitemap]]>
+                <affiliate_share><![CDATA[/customer/affiliate
+    /credit
+    /checkout
+    /wishlist
+    /contacts
+    /catalogsearch
+    /seo_sitemap]]>
                 </affiliate_share>
                 <auto_signup_affiliate>0</auto_signup_affiliate>
                 <overwrite_register>0</overwrite_register>
