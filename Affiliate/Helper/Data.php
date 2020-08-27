@@ -1645,7 +1645,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $sender = $this->getStoreConfig('affiliate/customer/email_sender', $storeCode);
         $senderName = $this->getStoreConfig('trans_email/ident_'.$sender.'/name', $storeCode);
         $sender = $this->getStoreConfig('trans_email/ident_'.$sender.'/email', $storeCode);
-        $sender = $this->getEmailUs($sender);
         $emailTemplate = 'affiliate/customer/email_template';
 
         $emailData = [
@@ -1677,7 +1676,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $storeCode = $store->getCode();
         $storeName = $this->getStoreConfig('general/store_information/name', $storeCode);
         $sender = $this->getStoreConfig('affiliate/invitation/email_sender', $storeCode);
-        $sender = $this->getEmailUs($sender);
+        $sender = $this->getStoreConfig('trans_email/ident_'.$sender.'/email', $storeCode);
         $emailTemplate = 'affiliate/invitation/email_template';
         if($this->getStoreConfig('affiliate/invitation/using_customer_email')){
             $sender = $data->getSender()->getEmail();

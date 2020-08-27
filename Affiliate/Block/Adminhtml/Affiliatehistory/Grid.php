@@ -175,6 +175,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
                 'index' => 'detail',
                 'renderer'  => 'MW\Affiliate\Block\Adminhtml\Renderer\Affiliatetransaction',
                 'filter' => false,
+                'sortable'  => false
             ]
         );
         $this->addColumn(
@@ -211,7 +212,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
      */
     protected function _prepareMassaction()
     {
-        $this->setMassactionIdField('affiliate_history');
+        $this->setMassactionIdField('history_id');
         $this->getMassactionBlock()->setFormFieldName('mw_history_id');
 
         $this->getMassactionBlock()->addItem(
