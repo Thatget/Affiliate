@@ -1,0 +1,129 @@
+<?php
+/* @var $block \MW\DailyDeal\Block\Sidebar\FeatureDeal */
+$featureDeals = $block->getFeatureDeals();
+$_dealCollection = $featureDeals;
+$_collectionSize = count($featureDeals);
+if ($_collectionSize > 0) :
+?>
+<head>
+    <link rel="stylesheet" href="<?php echo $block->getAssetUrl('MW_DailyDeal::js/owl/assets/owlcarousel/assets/owl.carousel.min.css') ?>">
+</head>
+<!-- title -->
+<section class="title">
+    <div class="row">
+        <div class="large-12 columns">
+            <h1>Feature Deals</h1>
+        </div>
+    </div>
+</section>
+
+<!--  content -->
+<section id="mw_dailydeal">
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="owl-carousel owl-theme">
+                <?php
+                    foreach ($_dealCollection as $_deal) :
+                        /* @var $_deal \MW\DailyDeal\Model\Dailydeal */
+                        $dealqty = $_deal->getDealQty();
+                        $soldqty = $_deal->getSoldQty();
+                        $beforetime = $block->getTimeStamp() - strtotime($_deal->getStartDateTime());
+                        $aftertime = strtotime($_deal->getEndDateTime()) - $block->getTimeStamp();
+                        if (($aftertime > 0) && ($beforetime >= 0)) {
+                        $product = $block->getProductById($_deal->getProductId());
+                ?>
+                    <div class="block block-todaydeal" >
+                        <div class="block-content">
+                            <p class="product-name">
+                                <a class="product-name" href="<?php echo $block->escapeHtml($product->getProductUrl()) ?>" title="<?php echo $block->escapeHtml($product->getName()) ?>">
+                                    <?php echo $block->escapeHtml($product->getName()) ?>
+                                </a>
+                            </p>
+                            <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $block->escapeHtml($product->getName()) ?>" class="product-image">
+                                <img src="<?php echo $block->escapeUrl($block->getProductImageUrl($product)); ?>" style="max-height: 275px;" width="170" height="170" alt="<?php echo $block->escapeHtml($product->getName()); ?>" />
+                            </a>
+
+                            <div class="product-details">
+                                <?php if ($_deal->checkDealPrice($product)) { ?>
+                                    <?php $_regularPrice = $product->getPrice() ?>
+                                    <?php $_finalPrice = $product->getFinalPrice() ?>
+                                    <p class="old-price" style="text-decoration: line-through">
+                                <span class="regular-price" >
+                                    <span class="price"><?php echo $block->escapeHtml($block->addPriceWithCurrency($_regularPrice)) ?></span>
+                                </span>
+                                    </p>
+                                    <p class="special-price">
+                                <span class="price">
+                                    <?php echo $block->escapeHtml($block->addPriceWithCurrency($_finalPrice)) ?>
+                                </span>
+                                    </p>
+                                <?php } else {
+                                    $_deal->setMinPriceFollowProductType($product, $_deal);
+                                    ?>
+                                    <p class="from-price special-price">
+                                        <span class="pri-label"><?php echo $block->escapeHtml(__('From'));?></span>
+                                        <span class="price">
+                                    <?php echo $block->addPriceWithCurrency($product->getData('min_price')) ?>
+                                </span>
+                                    </p>
+                                <?php } ?>
+                                <form data-role="tocart-form" action="<?php echo $block->escapeUrl($block->getAddToCartUrl($product)); ?>" method="post" style="text-align: center;">
+                                    <?php echo $block->getBlockHtml('formkey')?>
+                                    <button type="submit"
+                                            title="<?php echo $block->escapeHtml(__('Buy now')) ?>"
+                                            class="button btn-buynow action tocart primary">
+                                        <span><?php echo $block->escapeHtml(__('Buy now')) ?></span>
+                                    </button>
+                                </form>
+                            </div>
+                            <?php if ($_deal->checkDealQtyToShow($product) &&
+                                ($block->getConfigTodayDealShowDetail() || $block->getConfigDisplayQuantity())) { ?>
+                                <?php if ($block->getConfigTodayDealShowDetail()) {
+                                    $_deal->processValueDiscountSaveBought(['model_product' => $product]);
+                                    $_deal_info = $_deal->getData('value_discount_save_bought');
+                                    ?>
+                                    <div class="mw_dld_detail">
+                                        <ul>
+                                            <li>
+                                                <span><?php echo $block->escapeHtml(__('Discount')) ?></span>
+                                                <span class="mw_dld_detail_num"><?php echo $block->escapeHtml($_deal_info['discount']) ?></span>
+                                            </li>
+                                            <li>
+                                                <span><?php echo $block->escapeHtml(__('You Save')) ?></span>
+                                                <span class="mw_dld_detail_num"><?php echo $block->escapeHtml($_deal_info['you_save']) ?></span>
+                                            </li>
+                                            <li>
+                                                <span><?php echo $block->escapeHtml(__('Bought')) ?></span>
+                                                <span class="mw_dld_detail_num"><?php echo $block->escapeHtml($_deal_info['bought']) ?></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                <?php } ?>
+                            <?php } ?>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php endforeach; ?>
+            </div>
+            <script>
+                require(['jquery', 'owl_carousel'],function($, owlCarousel) {
+                    $(document).ready(function () {
+                        var owl = $('.owl-carousel');
+                        $ = jQuery;
+                        owl.owlCarousel({
+                            animateOut: 'slideOutDown',
+                            animateIn: 'flipInX',
+                            items: 4,
+                            loop: true,
+                            margin: 10,
+                            autoplay: true,
+                            autoplayTimeout: 2000,
+                            autoplayHoverPause: true
+                        });
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</section>
+<?php endif; ?>

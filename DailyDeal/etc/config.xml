@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+  ~ Mage-World
+  ~
+  ~  @category    Mage-World
+  ~  @package     MW
+  ~  @author      Mage-world Developer
+  ~
+  ~  @copyright   Copyright (c) 2018 Mage-World (https://www.mage-world.com/)
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mw_dailydeal>
+            <group_general>
+                <active>1</active>
+                <sidebardeal>2</sidebardeal>
+                <calendar>0</calendar>
+                <sidebaractive>1</sidebaractive>
+                <deallayout>2columns-left</deallayout>
+                <columncount>4</columncount>
+                <status_to_sold>pending</status_to_sold>
+            </group_general>
+
+            <deal_display>
+                <dealshowdetail>1</dealshowdetail>
+                <showqty>1</showqty>
+                <numberactive>2</numberactive>
+                <sortby>1</sortby>
+                <show_description>0</show_description>
+                <product_view_show_countdown>1</product_view_show_countdown>
+            </deal_display>
+
+            <titles_messages>
+                <title>Today's Deal</title>
+                <productdetaillabel>Get it before it's gone!</productdetaillabel>
+                <deal_qty_on_product_page>Hurry, there are only {{qty}} items left!</deal_qty_on_product_page>
+                <deal_qty_on_catalog_page>Hurry, just {{qty}} items left!</deal_qty_on_catalog_page>
+            </titles_messages>
+
+            <deal_colors>
+                <schemecolor>#336699</schemecolor>
+                <countdowncolor>#336699</countdowncolor>
+                <highlight_color>#CC3333</highlight_color>
+            </deal_colors>
+
+            <admin_notification>
+                <notify_admin>1</notify_admin>
+            </admin_notification>
+
+            <global_variable>
+                <send_mail_admin_notification>1</send_mail_admin_notification>
+                <template_id_no_deal>notification_admin_no_deal</template_id_no_deal>
+            </global_variable>
+        </mw_dailydeal>
+    </default>
+</config>

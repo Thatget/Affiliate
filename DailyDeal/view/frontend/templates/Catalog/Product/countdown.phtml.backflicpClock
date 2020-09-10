@@ -1,0 +1,47 @@
+
+
+<?php $_product = $this->getData('product'); ?>
+<?php
+/**
+ * @var $blockList \MW\DailyDeal\Block\Showtabs\ListDeal
+ */
+$blockList = $this->getLayout()->createBlock('MW\DailyDeal\Block\Showtabs\ListDeal');
+//if ($blockList->moduleEnable()) {
+/**
+ * @var $_deal \MW\DailyDeal\Model\Dailydeal
+ */
+$_deal = $blockList->loadDealActiveByProductId($_product->getId());
+$startTime =  date('d M Y H:i:s', strtotime($_deal->getStartDateTime()));
+$endTime =  date('d M Y H:i:s', strtotime($_deal->getEndDateTime()));
+$currentTime = $blockList->getTimeStamp();
+$remain_second = strtotime($endTime) - $currentTime;
+?>
+<link rel="stylesheet" href="<?php echo $blockList->getAssetUrl('MW_DailyDeal::css/flipclock.css') ?>">
+<script src="<?php echo $blockList->getAssetUrl('MW_DailyDeal::js/flipclock.js'); ?>"></script>
+<div class="clock<?php echo $remain_second; ?>"></div>
+<div class="message"></div>
+
+<script type="text/javascript">
+    require(['jquery', 'FlipClock'],function($, FlipClock) {
+        var clock;
+
+        $(document).ready(function() {
+            var clock;
+
+            clock = $('.clock<?php echo $remain_second; ?>').FlipClock({
+                clockFace: 'DailyCounter',
+                autoStart: false,
+                callbacks: {
+                    stop: function() {
+                        $('.message').html('The clock has stopped!')
+                    }
+                }
+            });
+
+            clock.setTime(<?php echo $remain_second; ?>);
+            clock.setCountdown(true);
+            clock.start();
+
+        });
+    });
+</script>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="mw_dailydeal">
+        <job name="mw_send_mail_to_admin" instance="MW\DailyDeal\Cron\SendEmailToAdmin" method="execute">
+            <schedule>0 23 * * *</schedule>
+            <!--Execute a command at 23:00 UTC every day-->
+        </job>
+
+        <job name="mw_dailydeal_disable_product" instance="MW\DailyDeal\Cron\DisableProductAfterDeal" method="execute">
+            <schedule>*/5 * * * *</schedule>
+            <!--Execute a command every five minutes-->
+        </job>
+    </group>
+</config>

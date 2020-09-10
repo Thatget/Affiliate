@@ -1,0 +1,15 @@
+DAILY DEAL
+--------------
+
+
+
+
+If you have any question or problem, please submit a ticket here: http://www.mage-world.com/contacts/
+or send us an email at support@mage-world.com
+
+1. To show list feature deal info on cms block, please add code below:
+{{block class="MW\DailyDeal\Block\Sidebar\FeatureDeal" name="mw_feature_deal_left" cacheable="false"}}
+or
+<block class="MW\DailyDeal\Block\Sidebar\FeatureDeal" name="mw_feature_deal_left" before="-" cacheable="false"></block>
+
+www.Mage-World.com

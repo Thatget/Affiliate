@@ -1,0 +1,43 @@
+<?php
+/**
+ * @var $blockList \MW\DailyDeal\Block\Showtabs\ListDeal
+ */
+
+$blockList = $this->getLayout()->createBlock('MW\DailyDeal\Block\Showtabs\ListDeal');
+$baseUrl = $blockList->getBaseUrl();
+$dld_color_title = $blockList->getConfigSchemeColor();
+$dld_color_coundown = $blockList->getConfigCountdownColor();
+$dld_color_lighight = $blockList->getConfigHighlightColor();
+?>
+
+<style type="text/css">
+    .tab-deal td.active a span ,
+    .tab-deal td a:hover span{
+        background: <?php echo $blockList->escapeHtml($dld_color_title); ?>;
+        background: <?php echo $blockList->escapeHtml($dld_color_title);?>
+                linear-gradient(to bottom, <?php echo $blockList->escapeHtml($dld_color_title);?>,
+                <?php echo $blockList->escapeHtml($dld_color_title);?>);
+    }
+    .tab-deal td.active a span span ,
+    .tab-deal td a:hover span span{background: none;}
+</style>
+
+<table class="tab-deal">
+    <tr>
+        <td id="deal_active">
+            <a href="<?php echo $baseUrl.'dailydeal/index/index'; ?>">
+                <span><span><?php echo __('Current Deals'); ?></span></span>
+            </a>
+        </td>
+        <td id="deal_past">
+            <a href="<?php echo $baseUrl.'dailydeal/index/past'; ?>">
+                <span><span><?php echo __('Past Deals'); ?></span></span>
+            </a>
+        </td>
+        <td id="deal_comming">
+            <a href="<?php echo $baseUrl.'dailydeal/index/comming'; ?>">
+                <span><span><?php echo __('Upcoming Deals'); ?></span></span>
+            </a>
+        </td>
+    </tr>
+</table>

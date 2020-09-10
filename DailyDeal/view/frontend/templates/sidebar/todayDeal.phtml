@@ -1,0 +1,226 @@
+<?php
+$isShowTodayDeals = $block->isShowTodayDeals();
+if ($isShowTodayDeals) {
+    /* @var $block \MW\DailyDeal\Block\Sidebar\TodayDeal */
+    $title = $block->getConfigTodayDealBlockTitle();
+    $_dealCollection = $block->getDeals();
+    $_collectionSize = count($_dealCollection);
+    if ($_collectionSize > 0) :
+        foreach ($_dealCollection as $_deal) :
+            /* @var $_deal \MW\DailyDeal\Model\Dailydeal */
+            $block->increateFeaturedView($_deal->getId());
+            $dealqty = $_deal->getDealQty();
+            $soldqty = $_deal->getSoldQty();
+            $beforetime = $block->getTimeStamp() - strtotime($_deal->getStartDateTime());
+            $aftertime = strtotime($_deal->getEndDateTime()) - $block->getTimeStamp();
+            if (($aftertime > 0) && ($beforetime >= 0)) {
+                $product = $block->getProductById($_deal->getProductId()); ?>
+
+            <?php $dld_color_title = $block->getConfigSchemeColor(); ?>
+            <?php $dld_color_coundown = $block->getConfigCountdownColor(); ?>
+            <?php $dld_color_lighight = $block->getConfigHighlightColor(); ?>
+            <?php
+            function colourBrightness($hex, $percent)
+            {
+                $hash = '';
+                if (stristr($hex, '#')) {
+                    $hex = str_replace('#', '', $hex);
+                    $hash = '#';
+                }
+                /// HEX TO RGB
+                $rgb = array(hexdec(substr($hex,0, 2)), hexdec(substr($hex,2, 2)), hexdec(substr($hex, 4, 2)));
+                //// CALCULATE
+                for ($i=0; $i<3; $i++) {
+                    // See if brighter or darker
+                    if ($percent > 0) {
+                        // Lighter
+                        $rgb[$i] = round($rgb[$i] * $percent) + round(255 * (1-$percent));
+                    } else {
+                        // Darker
+                        $positivePercent = $percent - ($percent*2);
+                        $rgb[$i] = round($rgb[$i] * $positivePercent) + round(0 * (1-$positivePercent));
+                    }
+                    // In case rounding up causes us to go to 256
+                    if ($rgb[$i] > 255) {
+                        $rgb[$i] = 255;
+                    }
+                }
+                //// RBG to Hex
+                $hex = '';
+                for ($i=0; $i < 3; $i++) {
+                    // Convert the decimal digit to hex
+                    $hexDigit = dechex($rgb[$i]);
+                    // Add a leading zero if necessary
+                    if (strlen($hexDigit) == 1) {
+                        $hexDigit = "0" . $hexDigit;
+                    }
+                    // Append to the hex string
+                    $hex .= $hexDigit;
+                }
+                return $hash.$hex;
+            }
+            ?>
+            <style type="text/css">
+                .block-todaydeal{ box-shadow: 0 0 3px <?php echo $block->escapeHtml($dld_color_title); ?>; -moz-box-shadow: 0 0 3px <?php echo $block->escapeHtml($dld_color_title); ?>; -webkit-box-shadow: 0 0 3px <?php echo $block->escapeHtml($dld_color_title); ?>}
+                .block-todaydeal .title{ background-color: <?php echo $block->escapeHtml($dld_color_title); ?>; background-image: linear-gradient(to bottom, <?php echo $block->escapeHtml(colourBrightness($dld_color_title, 0.9));?>, <?php echo $block->escapeHtml(colourBrightness($dld_color_title, -0.7));?>); background-image: -webkit-linear-gradient(to bottom, <?php echo $block->escapeHtml(colourBrightness($dld_color_title, 0.9));?>, <?php echo $block->escapeHtml(colourBrightness($dld_color_title, -0.7));?>); background-image:    -moz-linear-gradient(to bottom, <?php echo $block->escapeHtml(colourBrightness($dld_color_title, 0.9));?>, <?php echo $block->escapeHtml(colourBrightness($dld_color_title, -0.7));?>);	background-image:     -ms-linear-gradient(to bottom, <?php echo $block->escapeHtml(colourBrightness($dld_color_title, 0.9));?>, <?php echo $block->escapeHtml(colourBrightness($dld_color_title, -0.7));?>); background-image:      -o-linear-gradient(to bottom, <?php echo $block->escapeHtml(colourBrightness($dld_color_title, 0.9));?>, <?php echo $block->escapeHtml(colourBrightness($dld_color_title, -0.7));?>);}
+                .block-todaydeal .block-content{background: <?php echo $block->escapeHtml(colourBrightness($dld_color_title, 0.1));?>}
+                .block-todaydeal .block-content a.product-name{color: <?php echo $block->escapeHtml(colourBrightness($dld_color_title, -0.7));?>}
+                .block-todaydeal .special-price .price{color: <?php echo $block->escapeHtml($dld_color_lighight);?>}
+                .block-todaydeal .mw_dld_detail ul li span.mw_dld_detail_num{color: <?php echo $block->escapeHtml($dld_color_lighight);?>}
+                .dailydeal-qty-box .deal-qty{color: <?php echo $block->escapeHtml($dld_color_lighight);?>}
+                .block-todaydeal .counter ul.countdown li div.countdown_num{background: <?php echo $block->escapeHtml($dld_color_coundown); ?>}
+                .block-todaydeal button.button span{background: <?php echo $block->escapeHtml($dld_color_title); ?>; border: 1px solid <?php echo $block->escapeHtml($dld_color_title); ?>;}
+                .block-todaydeal button.button span span{background: none; border: 0px none;}
+                .block-todaydeal{border: 1px solid <?php echo $block->escapeHtml($dld_color_title); ?>;}
+            </style>
+
+
+            <div class="block block-todaydeal" >
+                <div class="title">
+                    <?php if ($title == '') { ?>
+                        <h3><?php /* @noEscape */ echo __('Get it before it&acute;s gone!'); ?></h3>
+                    <?php } else { ?>
+                        <h3><?php /* @noEscape */ echo $title; ?></h3>
+                    <?php } ?>
+                </div>
+                <div class="block-content">
+                    <ol  class="mini-products-list">
+                        <li>
+                            <p class="product-name">
+                                <a class="product-name" href="<?php /* @noEscape */ echo $product->getProductUrl() ?>" title="<?php /* @noEscape */ echo $product->getName() ?>">
+                                    <?php /* @noEscape */ echo $product->getName() ?>
+                                </a>
+                            </p>
+                            <a href="<?php /* @noEscape */ echo $product->getProductUrl() ?>" title="<?php /* @noEscape */ echo $product->getName() ?>" class="product-image">
+                                <img src="<?php /* @noEscape */ echo $block->getProductImageUrl($product); ?>" width="70" height="70" alt="<?php /* @noEscape */ echo $block->stripTags($block->getImageLabel($product, 'small_image'), null, true) ?>" />
+                            </a>
+
+                            <div class="product-details">
+                                <?php if ($_deal->checkDealPrice($product)) { ?>
+                                    <?php $_regularPrice = $product->getPrice() ?>
+                                    <?php $_finalPrice = $product->getFinalPrice() ?>
+                                    <p class="old-price" style="text-decoration: line-through">
+                                    <span class="regular-price">
+                                        <span class="price"><?php /* @noEscape */ echo $block->addPriceWithCurrency($_regularPrice) ?></span>
+                                    </span>
+                                    </p>
+                                    <p class="special-price">
+                                    <span class="price">
+                                        <?php /* @noEscape */ echo $block->addPriceWithCurrency($_finalPrice) ?>
+                                    </span>
+                                    </p>
+                                <?php } else {
+                                    $_deal->setMinPriceFollowProductType($product, $_deal);
+                                    ?>
+                                    <p class="from-price special-price">
+                                        <span class="pri-label"><?php /* @noEscape */ echo __('From');?></span>
+                                        <span class="price">
+                                        <?php /* @noEscape */ echo $block->addPriceWithCurrency($product->getData('min_price')) ?>
+                                    </span>
+                                    </p>
+                                <?php } ?>
+                                <form data-role="tocart-form" action="<?php /* @noEscape */ echo $block->getAddToCartUrl($product); ?>" method="post">
+                                    <?php echo $block->getBlockHtml('formkey')?>
+                                    <button type="submit"
+                                            title="<?php /* @noEscape */ echo __('Buy now') ?>"
+                                            class="button btn-buynow action tocart primary">
+                                        <span><?php /* @noEscape */ echo __('Buy now') ?></span>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <?php if ($_deal->checkDealQtyToShow($product) &&
+                                ($block->getConfigTodayDealShowDetail() || $block->getConfigDisplayQuantity())) { ?>
+                                <?php if ($block->getConfigTodayDealShowDetail()) {
+                                    $_deal->processValueDiscountSaveBought(['model_product' => $product]);
+                                    $_deal_info = $_deal->getData('value_discount_save_bought');
+                                    ?>
+                                    <div class="mw_dld_detail">
+                                        <ul>
+                                            <li>
+                                                <span><?php /* @noEscape */ echo __('Discount') ?></span>
+                                                <span class="mw_dld_detail_num"><?php /* @noEscape */ echo $_deal_info['discount'] ?></span>
+                                            </li>
+                                            <li>
+                                                <span><?php /* @noEscape */ echo __('You Save') ?></span>
+                                                <span class="mw_dld_detail_num"><?php /* @noEscape */ echo $_deal_info['you_save'] ?></span>
+                                            </li>
+                                            <li>
+                                                <span><?php /* @noEscape */ echo __('Bought') ?></span>
+                                                <span class="mw_dld_detail_num"><?php /* @noEscape */ echo $_deal_info['bought'] ?></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                <?php } ?>
+
+
+                                <?php
+                                $dealqty = $_deal->getDealQty();
+                                $soldqty = $_deal->getSoldQty();
+                                ?>
+                                <div class="dailydeal-qty-box">
+                                    <?php if ($block->getConfigDisplayQuantity()) { ?>
+                                        <?php
+                                        if (($dealqty - $soldqty) > 10) {
+                                            /* @noEscape */ echo $block->renderDealQtyOnCatalogPage($dealqty - $soldqty);
+                                        } elseif (($dealqty - $soldqty) <= 10 && ($dealqty - $soldqty) > 1) {
+                                            /* @noEscape */ echo $block->renderDealQtyOnCatalogPage($dealqty - $soldqty);
+                                        } elseif (($dealqty - $soldqty) == 1) {
+                                            /* @noEscape */ echo $block->renderDealQtyOnCatalogPage($dealqty - $soldqty);
+                                        }
+                                        ?>
+                                    <?php } ?>
+                                </div>
+                            <?php } ?>
+
+
+                        </li>
+                    </ol>
+                    <!-- Countdown Javascript -->
+                    <div id="counter" class="counter">
+                        <ul class="countdown">
+                            <li class="first">
+                                <div class="countdown_num" id="cd_day-<?php /* @noEscape */ echo $_deal->getId() ?>"></div><div id="cd_day"></div></li>
+                            <li>
+                                <div class="countdown_num" id="cd_hour-<?php /* @noEscape */ echo $_deal->getId() ?>"></div><div id="cd_hour"></div></li>
+                            <li>
+                                <div class="countdown_num" id="cd_min-<?php /* @noEscape */ echo $_deal->getId() ?>"></div><div id="cd_minute"></div></li>
+                            <li class="last">
+                                <div class="countdown_num" id="cd_sec-<?php /* @noEscape */ echo $_deal->getId() ?>"></div><div id="cd_second"></div></li>
+                        </ul>
+                        <div class="clear"><span>&nbsp;</span></div>
+                    </div>
+                    <div id="expired" style="display:none;">
+                        <?php /* @noEscape */ echo __('The deadline has passed.'); ?>
+                    </div>
+                </div>
+            </div>
+            <?php $remain_second = strtotime($_deal->getEndDateTime()) - $block->getTimeStamp(); ?>
+            <script type="text/javascript">
+                var todaydeal_server_time = {
+                    second : <?php /* @noEscape */ echo $remain_second; ?>,
+                    callback : '',
+
+                    id_day  : 'cd_day-' + <?php /* @noEscape */ echo $_deal->getId(); ?>,
+                    id_hour  : 'cd_hour-' + <?php /* @noEscape */ echo $_deal->getId(); ?>,
+                    id_minute  : 'cd_min-' + <?php /* @noEscape */ echo $_deal->getId(); ?>,
+                    id_second  : 'cd_sec-' + <?php /* @noEscape */ echo $_deal->getId(); ?>,
+
+                    label_day : 'cd_day',
+                    label_hour : 'cd_hour',
+                    label_minute : 'cd_minute',
+                    label_second : 'cd_second',
+
+                    label_day_value : '<?php /* @noEscape */ echo __('Day'); ?>',
+                    label_hour_value : '<?php /* @noEscape */ echo __('Hours'); ?>',
+                    label_minute_value : '<?php /* @noEscape */ echo __('Mins'); ?>',
+                    label_second_value : '<?php /* @noEscape */ echo __('Secs'); ?>'
+                };
+                countDownSecond(todaydeal_server_time);
+            </script>
+            <?php break; ?>
+            <?php } ?>
+        <?php endforeach; ?>
+    <?php endif;
+} ?>
+

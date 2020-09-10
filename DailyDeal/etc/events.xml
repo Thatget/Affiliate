@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_product_get_final_price">
+        <observer name="mw_dailydeal_price" instance="MW\DailyDeal\Observer\Frontend\CatalogFinalPrice" />
+    </event>
+
+    <event name="catalog_product_collection_load_after">
+        <observer name="mw_dailydeal_product_collection_after" instance="MW\DailyDeal\Observer\Frontend\CatalogProductCollectionLoadAfter" />
+    </event>
+
+    <event name="sales_quote_item_qty_set_after" >
+        <observer name="mw_dailydeal_sales_quote_item_qty_set_after" instance="MW\DailyDeal\Observer\Frontend\CheckQuoteItemQty" />
+    </event>
+
+    <!--<event name="sales_order_place_after" >-->
+        <!--<observer name="mw_dailydeal_sales_order_place_after" instance="MW\DailyDeal\Observer\Frontend\SalesOrderPlaceAfter" />-->
+    <!--</event>-->
+
+    <event name="sales_order_save_after" >
+        <observer name="mw_dailydeal_sales_order_save_after" instance="MW\DailyDeal\Observer\Frontend\SalesOrderSaveAfter" />
+    </event>
+
+    <event name="checkout_cart_update_items_after" >
+        <observer name="mw_dailydeal_checkout_cart_update_items_after" instance="MW\DailyDeal\Observer\Frontend\CheckoutCartUpdateItemsAfter" />
+    </event>
+
+    <!--no overwrite template product view sales_order_save_after  -->
+    <!--no check lisence-->
+
+    <event name="checkout_cart_product_add_after">
+        <observer name="mw_dailydeal_checkout_cart_product_add_after" instance="MW\DailyDeal\Observer\Frontend\ProcessApply" />
+    </event>
+</config>

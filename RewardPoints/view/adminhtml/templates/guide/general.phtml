@@ -1,0 +1,224 @@
+<?php
+
+
+?>
+<?php
+
+/** @var \MW\RewardPoints\Block\Adminhtml\Guide $block */
+
+$userGuide = __('
+_____________________________________________________________________________________________________________________<br />
+
+<strong>1. TEMPLATES ARE REWRITEN BY DEFAULT</strong><br />
+______________________________________<br />
+
+- In controller <strong>checkout_cart_index</strong><br />
+
++ Rewrite template: <strong>Magento_Checkout::cart/coupon.phtml and Magento_Checkout::cart/totals.phtml</strong><br />
+<br/>
+<br/>
+_____________________________________________________________________________________________________________________<br />
+
+<strong>2. INTEGRATE REWARD POINTS BLOCK IN SHOPPING CART</strong><br />
+______________________________________<br />
+
+1. edit the file: <br/> <strong>app/design/frontend/*vendor*/*your_theme*/Magento_Checkout/templates/cart/coupon.phtml</strong><br />
+
+If this file does not exist on your theme, please copy it from: <br/> <strong>vendor/magento/module-checkout/view/frontend/templates/cart/coupon.phtml</strong><br />
+
+2. copy this code above:<br/>
+<br/>
+    <strong>&lt;?php </strong> <br/>
+    &nbsp&nbsp&nbsp&nbsp&nbsp if($this->helper(\'Magento\Catalog\Helper\Data\')->isModuleOutputEnabled(\'MW_RewardPoints\')) { <br/>
+            &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp echo $this->helper(\'MW\RewardPoints\Helper\Theme\')->getRewardpointCartTemplate(); <br/>
+    &nbsp&nbsp&nbsp&nbsp&nbsp }<br/>
+     <strong>?&gt;</strong><br/>
+<br/>
+and place it above this code:<br/><br/>
+
+<strong>&lt;div  </strong> class="block discount" id="block-discount" data-mage-init=\'{"collapsible":{"openedState": "active", "saveState": false}}\'  <strong>&gt;</strong>
+<br/>
+<br/>
+_____________________________________________________________________________________________________________________<br />
+
+<strong> 3. SHOW REWARD POINTS IN REGISTRATION</strong><br/>
+______________________________________<br />
+
+1. edit the file: <br/> <strong>app/design/frontend/*vendor*/*your_theme*/Magento_Customer/templates/form/register.phtml</strong><br/>
+
+If this file does not exist on your theme, please copy it from: <br/> <strong>vendor/magento/module-customer/view/frontend/templates/form/register.phtml </strong><br/>
+
+2. copy this code:<br/><br/>
+<strong>&lt;?php </strong><br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp if($this->helper(\'Magento\Catalog\Helper\Data\')->isModuleOutputEnabled(\'MW_RewardPoints\')) {<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp echo $this->helper(\'MW\RewardPoints\Helper\Theme\')->getDisplayEarnpointCreateAccount();<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp }<br/>
+<strong>?&gt;</strong><br/>
+
+and place it above this code:<br/><br/>
+
+<strong>&lt;fieldset</strong> class="fieldset create info" <strong>&gt;</strong>
+<br/>
+<br/>
+_____________________________________________________________________________________________________________________<br />
+<strong>4. SHOW POINT BALANCE ON TOP LINK</strong>><br/>
+______________________________________<br />
+Show point balance next to Welcome message on top link : <br/>
+
+1. edit the file: <br/> <strong>app/design/frontend/*vendor*/*your_theme*/Magento_Theme/templates/html/header.phtml </strong><br/>
+
+If this file does not exist on your theme, please copy it from:<br/> <strong>vendor/magento/module-theme/view/frontend/templates/html/header.phtml</strong><br/>
+
+2. copy this code:<br/><br/>
+<strong>&lt;?php </strong><br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp if($this->helper(\'Magento\Catalog\Helper\Data\')->isModuleOutputEnabled(\'MW_RewardPoints\')) { <br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp	echo $this->helper(\'MW\RewardPoints\Helper\Theme\')->getCustomerPoint();<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp }<br/>
+<strong>?&gt;</strong><br/>
+
+and place it under this code:<br/>
+
+<strong>&lt;span</strong> data-bind="text: customer().fullname ? $t(\'Welcome, %1!\').replace(\'%1\', customer().fullname) : \'&lt;?=$block->escapeHtml($welcomeMessage) ?&gt;\'"> <strong>&lt;/span</strong>
+<br/>
+<br/>
+
+_____________________________________________________________________________________________________________________<br />
+<strong>5. SHOW REWARD POINT IN PRODUCT REVIEW FORM</strong><br/>
+______________________________________<br />
+
+1. edit the file: <br/><strong>app/design/frontend/*vendor*/*your_theme*/Magento_Review/templates/form.phtml</strong><br/>
+
+If this file does not exist on your theme, please copy it from: <br/><strong>vendor/magento/module-review/view/frontend/templates/form.phtml</strong><br/>
+
+2. copy this code:<br/><br/>
+<strong>&lt;?php </strong><br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp if($this->helper(\'Magento\Catalog\Helper\Data\')->isModuleOutputEnabled(\'MW_RewardPoints\')) {<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp	echo $this->helper(\'MW\RewardPoints\Helper\Theme\')->getDisplayEarnpointSubmitProductReview();<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp }<br/>
+<strong>?&gt;</strong><br/>
+
+and place it under this code:<br/>
+<strong>&lt;?php </strong>if ($block->getAllowWriteReviewFlag()):<strong>?&gt;</strong><br/>
+<br/><br/>
+_____________________________________________________________________________________________________________________<br />
+<strong>6. SHOW REWARD POINT IN SIGNING UP NEWsLETTER FORM</strong><br/>
+______________________________________<br />
+
+1. edit the file: <br/> <strong> app/design/frontend/*vendor*/*your_theme*/Magento_Customer/templates/form/register.phtml </strong><br/>
+
+If this file does not exist on your theme, please copy it from: <br/> <strong> vendor/magento/module-customer/view/frontend/templates/form/register.phtml</strong><br/>
+
+2. copy this code:<br/><br/>
+<strong>&lt;?php </strong><br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp if($this->helper(\'Magento\Catalog\Helper\Data\')->isModuleOutputEnabled(\'MW_RewardPoints\')) {<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp	echo $this->helper(\'MW\RewardPoints\Helper\Theme\')->getDisplayEarnpointSignUpNewLetter();<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp }<br/>
+<strong>?&gt;</strong><br/>
+
+and place it under this code:<br/>
+<strong>&lt;?php </strong> if ($block->isNewsletterEnabled()): <strong>?&gt;</strong><br/>
+<br/><br/>
+_____________________________________________________________________________________________________________________<br />
+<strong>7. SHOW REWARD POINTS IN PRODUCT LISTING PAGE</strong><br/>
+______________________________________<br />
+
+1. edit the file: <br/>
+<strong>app/design/frontend/*vendor*/*your_theme*/Magento_Catalog/templates/product/list.phtml</strong><br/>
+
+If this file does not exist on your theme, please copy it from: <br/> <strong>vendor/magento/module-catalog/view/frontend/templates/product/list.phtml</strong><br/>
+
+2. copy this code:<br/>
+<strong>&lt;?php </strong><br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp if($this->helper(\'Magento\Catalog\Helper\Data\')->isModuleOutputEnabled(\'MW_RewardPoints\')) {<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp	echo $this->helper(\'MW\RewardPoints\Helper\Theme\')->getDisplayEarnpointListProduct($_product);<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp }<br/>
+<strong>?&gt;</strong><br/>
+
+and place it under this code: <br/>
+<strong>&lt;?php </strong> echo $block->getProductPrice($_product) <strong>?&gt;</strong><br/>
+<br/><br/>
+
+_____________________________________________________________________________________________________________________<br />
+<strong>8. SHOW REWARD POINTS IN PRODUCT DETAIL PAGE </strong><br/>
+______________________________________<br />
+
+1. edit the file: <br/>
+<strong>app/design/frontend/*vendor*/*your_theme*/Magento_Catalog/templates/product/view/form.phtml</strong><br/>
+
+If this file does not exist on your theme, please copy it from:<br/>
+
+<strong>vendor/magento/module-catalog/view/frontend/templates/product/view/form.phtml</strong><br/>
+
+2. copy this code:<br/>
+<strong>&lt;?php </strong><br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp if($this->helper(\'Magento\Catalog\Helper\Data\')->isModuleOutputEnabled(\'MW_RewardPoints\')) {<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp	echo $this->helper(\'MW\RewardPoints\Helper\Theme\')->getDisplayEarnpointViewProduct($_product);<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp }<br/>
+<strong>?&gt;</strong><br/>
+
+and place it under this code:<br/>
+<strong>&lt;div </strong> class="product-add-form" <strong>&gt;</strong><br/>
+<br/>
+<br/>
+_____________________________________________________________________________________________________________________<br />
+<strong>9. SHOW FACEBOOK LIKE & SHARE BUTTON IN PRODUCT DETAIL PAGE</strong><br/>
+______________________________________<br />
+
+1. edit the file: <br/> <strong> app/design/frontend/*vendor*/*your_theme*/Magento_Catalog/templates/product/view/form.phtml</strong><br/>
+
+If this file does not exist on your theme, please copy it from:<br/>
+
+<strong> vendor/magento/module-catalog/view/frontend/templates/product/view/form.phtml</strong><br/>
+
+2. copy this code: <br/><br/>
+<strong>&lt;?php </strong><br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp if($this->helper(\'Magento\Catalog\Helper\Data\')->isModuleOutputEnabled(\'MW_RewardPoints\')) {<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp	echo $this->helper(\'MW\RewardPoints\Helper\Theme\')->getDisplayFacebookLike();<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp }<br/>
+<strong>?&gt;</strong><br/>
+
+and place it under this code:<br/>
+<strong>&lt;div </strong>  class="product-add-form"<strong>&gt;</strong><br/>
+<br/>
+<br/>
+
+_____________________________________________________________________________________________________________________<br />
+<strong>10. INVITATION CODE</strong><br/>
+______________________________________<br />
+
+copy this code: <br/>
+<strong>&lt;?php </strong><br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp if($this->helper(\'Magento\Catalog\Helper\Data\')->isModuleOutputEnabled(\'MW_RewardPoints\')) {<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 	echo $this->helper(\'MW\RewardPoints\Helper\Theme\')->getInvitationTemplate();<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp }<br/>
+<strong>?&gt;</strong><br/>
+
+into template that you want show <br/>
+
+<br/><br/>
+_____________________________________________________________________________________________________________________<br />
+<strong>11. SHOW THE REWARD POINTS FORM ON ONE PAGE CHECKOUT OF MAGENTO DEFAULT </strong><br/>
+______________________________________<br />
+
+1. edit the file:<br/>
+<strong>app/design/frontend/*vendor*/*your_theme*/Magento_Checkout/templates/onepage.phtml</strong><br/>
+
+If this file does not exist on your theme, please copy it from:<br/>
+
+<strong>vendor/magento/module-checkout/view/frontend/templates/onepage.phtml</strong><br/>
+
+2. copy this code:<br/>
+<strong>&lt;?php </strong><br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp if($this->helper(\'Magento\Catalog\Helper\Data\')->isModuleOutputEnabled(\'MW_RewardPoints\')) {<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	echo $this->helper(\'MW\RewardPoints\Helper\Theme\')->getRewardpointOnepageTemplate();<br/>
+	&nbsp&nbsp&nbsp&nbsp&nbsp }<br/>
+<strong>?&gt;</strong><br/>
+
+and place it above the final <strong>&lt;/div></strong> tag <br/>
+<br/><br/>
+
+');
+?>
+<div class="fieldset ">
+    <?php echo $userGuide ?>
+</div>

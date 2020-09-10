@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Daily Deal</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="MW\DailyDeal\Block\Adminhtml\Dealitems\Edit" name="dailydeal_dealitems_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="MW\DailyDeal\Block\Adminhtml\Dealitems\Edit\Tabs" name="dealitems_edit_tabs">
+                <block class="MW\DailyDeal\Block\Adminhtml\Dealitems\Edit\Tab\GeneralTab" name="dealitems_edit_tab_general"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

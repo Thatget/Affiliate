@@ -1,0 +1,70 @@
+<div class="block block-deals-week">
+    <div class="block-content">
+        <ol class="mini-products-list" id="recently-viewed-items">
+            <?php
+            /* @var $block \MW\DailyDeal\Block\Sidebar\Deal */
+            $numberactive = $block->getNumberrActiveDeal();
+            $deals = $block->getDealData();
+            $currenttime = $block->getTimeStamp();
+            $block->getData();
+            $startdaytime = $block->getData('startdaytime');
+            $enddaytime = $block->getData('enddaytime');
+            $i = -1;
+            foreach ($deals as $deal) {
+                /* @var $deal \MW\DailyDeal\Model\Dailydeal */
+                $dealtimestart = strtotime($deal->getStartDateTime());
+                $dealtimeend = strtotime($deal->getEndDateTime());
+
+                if (($dealtimestart < $startdaytime && $dealtimeend > $startdaytime)
+                    || ($dealtimestart > $startdaytime && $dealtimestart < $enddaytime)) {
+                    if ($currenttime < $dealtimeend) {
+                        $i++;
+                        if ($numberactive <= $i) {
+                            break;
+                        }
+                        /* @var $product \Magento\Catalog\Model\Product */
+                        $product = $block->getProductById($deal->getProductId());
+                        ?>
+
+                        <li class="item <?php if ($i==0) echo 'fisrt'; if ($i%2==0) echo 'odd' ?>">
+                            <p class="product-name">
+                                <a href="<?php echo $block->escapeUrl($product->getProductUrl()) ?>"><?php echo $block->escapeHtml($deal->getCurProduct())?></a>
+                            </p>
+                            <a href="<?php echo $block->escapeUrl($product->getProductUrl()) ?>" title="<?php echo $block->escapeHtml($product->getName()); ?>" class="product-image">
+                                <img src="<?php echo $block->escapeUrl($block->getProductImageUrl($product)); ?>" width="70" height="70" alt="<?php echo $block->escapeHtml($product->getName()) ?>" />
+                            </a>
+                            <div class="product-details">
+                                <div class="price-box">
+                                    <?php if ($deal->checkDealPrice($product)) { ?>
+                                        <?php $regularPrice = $product->getPrice() ?>
+                                        <?php $finalPrice = $product->getPriceInfo()->getPrice('final_price')->getValue() ?>
+                                        <p class="old-price" style="text-decoration: line-through">
+                            <span class="regular-price">
+                                <span class="price"><?php echo $block->escapeHtml($block->addPriceWithCurrency($regularPrice)) ?></span>
+                            </span>
+                                        </p>
+                                        <p class="special-price">
+                            <span class="price">
+                                <?php echo $block->escapeHtml($block->addPriceWithCurrency($finalPrice)) ?>
+                            </span>
+                                        </p>
+                                    <?php } else {
+                                        $deal->setMinPriceFollowProductType($product, $deal);
+                                        ?>
+                                        <p class="from-price special-price">
+                                            <span class="pri-label"><?php echo $block->escapeHtml(__('From'));?></span>
+                                            <span class="price">
+                                <?php echo $block->escapeHtml($block->addPriceWithCurrency($product->getData('min_price'))); ?>
+                            </span>
+                                        </p>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </li>
+                    <?php }
+                }
+            }
+            ?>
+        </ol>
+    </div>
+</div>

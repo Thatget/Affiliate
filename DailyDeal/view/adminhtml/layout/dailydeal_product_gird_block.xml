@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="dailydeal_product.grid.container">
+            <block class="MW\DailyDeal\Block\Adminhtml\Dealitems\Grid" name="dailydeal.product.grid" as="grid">
+                <arguments>
+                    <argument name="id" xsi:type="string">dailydeal_product_grid</argument>
+                    <argument name="dataSource" xsi:type="object">MW\DailyDeal\Model\ResourceModel\Product\Collection</argument>
+                    <argument name="use_ajax" xsi:type="string">true</argument>
+                    <argument name="default_sort" xsi:type="string">entity_id</argument>
+                    <argument name="default_dir" xsi:type="string">ASC</argument>
+                    <argument name="save_parameters_in_session" xsi:type="string">1</argument>
+                    <argument name="grid_url" xsi:type="url" path="*/*/grid">
+                        <param name="_current">1</param>
+                    </argument>
+                </arguments>
+
+                <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" as="grid.columnSet"
+                       name="dailydeal.store.grid.columnSet">
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="entity_ids">
+                        <arguments>
+                            <argument name="type" xsi:type="string">skip-list</argument>
+                            <argument name="renderer" xsi:type="string">Magento\Backend\Block\Widget\Grid\Column\Renderer\Radio</argument>
+                            <argument name="name" xsi:type="string">radio_entity_id</argument>
+                            <argument name="html_name" xsi:type="string">radio_entity_id</argument>
+                            <!--<argument name="index" xsi:type="string">entity_id</argument>-->
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="entity_id">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">ID</argument>
+                            <argument name="type" xsi:type="string">number</argument>
+                            <argument name="index" xsi:type="string">entity_id</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="name">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Name</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">name</argument>
+                            <argument name="editable" xsi:type="string">1</argument>
+                            <argument name="escape" xsi:type="string">1</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="sku">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">sku</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">sku</argument>
+                            <argument name="id" xsi:type="string">sku</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="price">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Price</argument>
+                            <argument name="type" xsi:type="string">currency</argument>
+                            <argument name="index" xsi:type="string">price</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="type_id">
+                        <arguments>
+                            <argument name="id" xsi:type="string">type_id</argument>
+                            <argument name="header" xsi:type="string" translate="true">Type</argument>
+                            <argument name="type" xsi:type="string">options</argument>
+                            <argument name="index" xsi:type="string">type_id</argument>
+                            <argument name="options" xsi:type="options"
+                                      model="Magento\Catalog\Model\Product\Type"/>
+                        </arguments>
+                    </block>
+
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

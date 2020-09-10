@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page layout="2columns-right" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <head>
+        <css src="MW_DailyDeal::css/dailydeal.css"/>
+        <css src="MW_DailyDeal::css/superneat.css"/>
+        <css src="MW_DailyDeal::css/promo_group.css"/>
+    </head>
+
+    <body>
+        <referenceContainer name="product.info.main">
+            <block class="MW\DailyDeal\Block\ProductPage" template="MW_DailyDeal::Catalog/Product/view.phtml" before="product.price.tier" cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

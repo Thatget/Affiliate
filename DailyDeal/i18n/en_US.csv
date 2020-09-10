@@ -1,0 +1,237 @@
+Back,Back
+Delete,Delete
+"Save Deal","Save Deal"
+"Save and Continue Edit","Save and Continue Edit"
+ID,ID
+Name,Name
+SKU,SKU
+"Attribute Set","Attribute Set"
+Status,Status
+Visibility,Visibility
+Type,Type
+Price,Price
+Products,Products
+"General Information","General Information"
+"Product Name","Product Name"
+"General information","General information"
+"Deal Information","Deal Information"
+"View product information.","View product information."
+"Change Product.","Change Product."
+"Product Price","Product Price"
+"Deal Setting","Deal Setting"
+"% Discount","% Discount"
+"Deal Price","Deal Price"
+"Please enter a number greater than 0 and smaller 'Product's Price' in this field.","Please enter a number greater than 0 and smaller 'Product's Price' in this field."
+"Deal Qty","Deal Qty"
+"Leave blank for no limit.","Leave blank for no limit."
+"Store View","Store View"
+"Limit deals per customer order","Limit deals per customer order"
+"Leave empty or 0 for unlimited deal qty per order.","Leave empty or 0 for unlimited deal qty per order."
+"Disable product after finish","Disable product after finish"
+No,No
+Yes,Yes
+"Starting time","Starting time"
+"Current time server is: %1","Current time server is: %1"
+"Ending time","Ending time"
+"Featured Deal","Featured Deal"
+"Featured Deals appear first/highest in deal blocks","Featured Deals appear first/highest in deal blocks"
+Enable,Enable
+Disable,Disable
+"Enable and Save Deal to activate","Enable and Save Deal to activate"
+"Deal Description","Deal Description"
+"Edit Deal '%1'","Edit Deal '%1'"
+"New Deal","New Deal"
+"Deal Report","Deal Report"
+"Number of Impressions","Number of Impressions"
+"Sold Qty","Sold Qty"
+"Save & Start Deal Generator","Save & Start Deal Generator"
+"Name in %1","Name in %1"
+Quantity,Quantity
+"Deal Items","Deal Items"
+Settings,Settings
+"Deal Generator Title ","Deal Generator Title "
+"Set Product Discount","Set Product Discount"
+"Limit Quantity of Each Sale Item to:","Limit Quantity of Each Sale Item to:"
+"Set number of products to be on sale at same time","Set number of products to be on sale at same time"
+"Set number of days in advance, deals are generated for","Set number of days in advance, deals are generated for"
+"Deal Duration Cycle (in hours) ","Deal Duration Cycle (in hours) "
+"The active time for each deal before rotating to next deal","The active time for each deal before rotating to next deal"
+"Deal Generation Method","Deal Generation Method"
+"At Random","At Random"
+Sequentially,Sequentially
+"Edit Deal Scheduler %1","Edit Deal Scheduler %1"
+"New Deal Scheduler","New Deal Scheduler"
+"Deal Scheduler","Deal Scheduler"
+Setting,Setting
+"Select Product(s)","Select Product(s)"
+"Reindex required","Reindex required"
+Ready,Ready
+Processing,Processing
+"Order #","Order #"
+"Purchased From (Store)","Purchased From (Store)"
+"Purchased On","Purchased On"
+"Bill to Name","Bill to Name"
+"Ship to Name","Ship to Name"
+"G.T. (Base)","G.T. (Base)"
+"G.T. (Purchased)","G.T. (Purchased)"
+Action,Action
+View,View
+"Deal Time","Deal Time"
+Time,Time
+"%1 isn't instance of Magento\Framework\Model\AbstractModel","%1 isn't instance of Magento\Framework\Model\AbstractModel"
+"%1 isn't instance of Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection","%1 isn't instance of Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection"
+"Daily Deal","Daily Deal"
+"Manage Deal","Manage Deal"
+"Manage Current Deal Running","Manage Current Deal Running"
+"You deleted the Deal Scheduler.","You deleted the Deal Scheduler."
+"We can't find a item to delete.","We can't find a item to delete."
+"This Dealitems no longer exists.","This Dealitems no longer exists."
+"Edit Deal Items","Edit Deal Items"
+"New Deal Items","New Deal Items"
+"Manage Deal Items","Manage Deal Items"
+"Edit Deal Items %1","Edit Deal Items %1"
+"Manage All Deal","Manage All Deal"
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"Something went wrong while saving the deal.","Something went wrong while saving the deal."
+"% Discount invalid!","% Discount invalid!"
+"End Time invalid!","End Time invalid!"
+"The Deal has been saved.","The Deal has been saved."
+"Manage Deal Scheduler","Manage Deal Scheduler"
+"This deal scheduler no longer exists.","This deal scheduler no longer exists."
+"Edit Dealitems","Edit Dealitems"
+"New Deal scheduler","New Deal scheduler"
+"Discount invalid!","Discount invalid!"
+"The Deal Scheduler has been saved.","The Deal Scheduler has been saved."
+"Something went wrong while saving.","Something went wrong while saving."
+"The Deal Scheduler Product has been saved.","The Deal Scheduler Product has been saved."
+"Generate %1 deals successful!","Generate %1 deals successful!"
+"This Deal Ended","This Deal Ended"
+"Comming Deal","Comming Deal"
+"List Deal","List Deal"
+"Past Deal","Past Deal"
+"Deal with id ""%1"" does not exist.","Deal with id ""%1"" does not exist."
+Enabled,Enabled
+Disabled,Disabled
+Queued,Queued
+Running,Running
+Ended,Ended
+"1 Column","1 Column"
+"2 Columns Right Sidebar","2 Columns Right Sidebar"
+"2 Columns Left Sidebar","2 Columns Left Sidebar"
+"3 Columns","3 Columns"
+Empty,Empty
+Pending,Pending
+Complete,Complete
+Holded,Holded
+Closed,Closed
+"Payment Review","Payment Review"
+"Pending Payment","Pending Payment"
+Canceled,Canceled
+Sidebar,Sidebar
+"Display Featured/Expiring Soonest Deals First","Display Featured/Expiring Soonest Deals First"
+"Display All Current Deals Randomly","Display All Current Deals Randomly"
+"Display Featured Deals Randomly","Display Featured Deals Randomly"
+"The requested quantity for %1 not available in Deal. Deal quantity left: %2","The requested quantity for %1 not available in Deal. Deal quantity left: %2"
+"Quantity you chose exceed the deal quantity (%1) that you are allowed to buy!","Quantity you chose exceed the deal quantity (%1) that you are allowed to buy!"
+"Use Default Value","Use Default Value"
+"Change Product","Change Product"
+"Edit Product","Edit Product"
+"<span>Qty cannot be set for Configurable Products since it varies for each of it's Associated Products.</span>","<span>Qty cannot be set for Configurable Products since it varies for each of it's Associated Products.</span>"
+"<span>Deal Qty cannot be set for Grouped Products since it varies for each of it's Associated Products.</span>","<span>Deal Qty cannot be set for Grouped Products since it varies for each of it's Associated Products.</span>"
+"<span>Deal Qty cannot be set for Bundle Products since it varies for each of it's Bundle Items.</span>","<span>Deal Qty cannot be set for Bundle Products since it varies for each of it's Bundle Items.</span>"
+"<span>Deal Price cannot be set for Grouped Products since it depends on the Associated Products.</span>","<span>Deal Price cannot be set for Grouped Products since it depends on the Associated Products.</span>"
+"<span>Deal Price cannot be set for Bundle Products since it varies for each of it's Bundle Items.</span>","<span>Deal Price cannot be set for Bundle Products since it varies for each of it's Bundle Items.</span>"
+sale,sale
+Day,Day
+Hours,Hours
+Mins,Mins
+Secs,Secs
+"We can't find products matching the selection.","We can't find products matching the selection."
+"Add to Cart","Add to Cart"
+"In stock","In stock"
+"Out of stock","Out of stock"
+"Learn More","Learn More"
+"Get it before it&acute;s gone!","Get it before it&acute;s gone!"
+"The deadline has passed.","The deadline has passed."
+Days,Days
+Minutes,Minutes
+Seconds,Seconds
+Discount,Discount
+"You Save","You Save"
+Bought,Bought
+"Deal starts at: <span class=""deal-time"">%1</span><h4 class=""deal-time"">%2</h4>","Deal starts at: <span class=""deal-time"">%1</span><h4 class=""deal-time"">%2</h4>"
+"Regular Price:","Regular Price:"
+"Special Price:","Special Price:"
+"There are <span class=""deal-qty-one""> %1  items</span> sold.","There are <span class=""deal-qty-one""> %1  items</span> sold."
+"There are <span class=""deal-qty-one""> %1 items</span> sold.","There are <span class=""deal-qty-one""> %1 items</span> sold."
+"Current Deals","Current Deals"
+"Past Deals","Past Deals"
+"Upcoming Deals","Upcoming Deals"
+"Active Deals","Active Deals"
+From,From
+"Buy now","Buy now"
+"Hurry, just <span class=""deal-qty"">%1 items</span> available.","Hurry, just <span class=""deal-qty"">%1 items</span> available."
+"Hurry, just <span class=""deal-qty"">%1 items</span> left!","Hurry, just <span class=""deal-qty"">%1 items</span> left!"
+"Hurry, just <span class=""deal-qty"">%1 item</span> left!","Hurry, just <span class=""deal-qty"">%1 item</span> left!"
+"View all","View all"
+"Deals of Week","Deals of Week"
+More,More
+"Mage World","Mage World"
+"Daily Deal Pro","Daily Deal Pro"
+General,General
+"Enable Module","Enable Module"
+"Show Daily Deal on Top Link","Show Daily Deal on Top Link"
+"Show Today's Deal block on","Show Today's Deal block on"
+"Show Deals of Week block on","Show Deals of Week block on"
+"Show Active Deals block on","Show Active Deals block on"
+"Daily Deal Page Layout","Daily Deal Page Layout"
+"Status Order to Sold Deal","Status Order to Sold Deal"
+"Deal Display","Deal Display"
+"Number of Active Deals to display at same time on 'Active Deal' and 'Deals of the Week' Block","Number of Active Deals to display at same time on 'Active Deal' and 'Deals of the Week' Block"
+"Deal Display Method","Deal Display Method"
+"Show deal details (Discount, You Save, Bought)","Show deal details (Discount, You Save, Bought)"
+"Display Remaining Deal Quantity","Display Remaining Deal Quantity"
+"Display Deal Description","Display Deal Description"
+"Custom 'Sale Label' Image","Custom 'Sale Label' Image"
+"Use dynamic Label Discount","Use dynamic Label Discount"
+Titles/Messages,Titles/Messages
+"""Today's Deal"" Block Title","""Today's Deal"" Block Title"
+"Countdown Timer Title","Countdown Timer Title"
+"Remaining Deal Quantity Message on Product Page","Remaining Deal Quantity Message on Product Page"
+"Remaining Deal Quantity Message on Deal Blocks and Categories Page","Remaining Deal Quantity Message on Deal Blocks and Categories Page"
+Colors,Colors
+"Color Scheme - General","Color Scheme - General"
+"Countdown Timer Color","Countdown Timer Color"
+"Highlight Color for 'price/discount/items left'","Highlight Color for 'price/discount/items left'"
+"Admin Notification","Admin Notification"
+"Notify Admin when no deals are active","Notify Admin when no deals are active"
+"Admin email","Admin email"
+sku,sku
+"Add New Deal","Add New Deal"
+CSV,CSV
+"Excel XML","Excel XML"
+"Active From","Active From"
+"Active To","Active To"
+MM/dd/YYYY,MM/dd/YYYY
+To,To
+Title,Title
+"Delete items","Delete items"
+"Are you sure you want to delete selected items?","Are you sure you want to delete selected items?"
+"MM/dd/YYYY HH:mm:ss","MM/dd/YYYY HH:mm:ss"
+"Regular Price","Regular Price"
+Featured,Featured
+Edit,Edit
+"Delete ""${ $.$data.holiday_name }""","Delete ""${ $.$data.holiday_name }"""
+"Are you sure you wan't to delete a ""${ $.$data.holiday_name }"" record?","Are you sure you wan't to delete a ""${ $.$data.holiday_name }"" record?"
+Description,Description
+"Setting Deal","Setting Deal"
+"Deal Generator Title","Deal Generator Title"
+"Set Product Discount ","Set Product Discount "
+"Add New Deal Scheduler","Add New Deal Scheduler"
+"Generated Deal","Generated Deal"
+"Deal Generator","Deal Generator"
+"Deal Duration Cycle (hours)","Deal Duration Cycle (hours)"
+"Deal Quantity","Deal Quantity"
+"# of Daily Deals Generated","# of Daily Deals Generated"
+"From Date","From Date"
+"To Date","To Date"

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <head>
+        <css src="MW_DailyDeal::css/dailydeal.css"/>
+        <css src="MW_DailyDeal::css/superneat.css"/>
+    </head>
+
+    <body>
+        <referenceContainer name="content">
+            <block class="MW\DailyDeal\Block\DailyDeal" template="MW_DailyDeal::showtabs/tabs.phtml"/>
+            <block class="MW\DailyDeal\Block\Category\View" name="category.products" template="Magento_Catalog::category/products.phtml">
+                <block class="MW\DailyDeal\Block\Showtabs\Past" name="category.products.list" as="product_list" template="MW_DailyDeal::showtabs/past.phtml">
+                    <container name="category.product.list.additional" as="additional" />
+                    <block class="Magento\Framework\View\Element\RendererList" name="category.product.type.details.renderers" as="details.renderers">
+                        <block class="Magento\Framework\View\Element\Template" name="category.product.type.details.renderers.default" as="default"/>
+                    </block>
+                    <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+                        <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+                    </block>
+                    <action method="setToolbarBlockName">
+                        <argument name="name" xsi:type="string">product_list_toolbar</argument>
+                    </action>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

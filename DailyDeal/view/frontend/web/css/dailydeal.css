@@ -1,0 +1,22 @@
+
+.product-item-info {
+	position: relative;
+}
+
+.block-deals-week .block-content li {
+	list-style: none;
+}
+
+.block-deals-week .block-content li.item:before,
+.block-deals-week .block-content li.item:after {
+	content: "";
+	display: table;
+}
+
+.block-deals-week .block-content li.item:after {
+	clear: both;
+}
+
+.block-deals .block-content li.item {
+	list-style: none;
+}

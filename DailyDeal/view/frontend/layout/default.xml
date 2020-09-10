@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="MW_DailyDeal::css/promo_group.css"/>
+        <css src="MW_DailyDeal::css/dailydeal.css"/>
+    </head>
+
+    <referenceBlock name="header.links">
+        <block class="MW\DailyDeal\Block\Link" name="mw-daily-deal-header-link">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="true">Daily Deal</argument>
+            </arguments>
+        </block>
+    </referenceBlock>
+
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="mw_dd_countdown" template="MW_DailyDeal::countdown.phtml" cacheable="false"/>
+            <!--<block class="MW\DailyDeal\Block\Sidebar\FeatureDeal" name="mw_feature_deal_left" before="-" cacheable="false"></block>-->
+        </referenceContainer>
+    </body>
+
+    <!--<referenceContainer name="right">-->
+        <referenceContainer name="sidebar.additional">
+            <block class="MW\DailyDeal\Block\Sidebar\ActiveDeal" name="mw_active_deal_left" template="MW_DailyDeal::sidebar/activeDeal.phtml"></block>
+        </referenceContainer>
+
+        <referenceContainer name="sidebar.additional">
+            <block class="MW\DailyDeal\Block\Sidebar\Calendar" name="mw_calendar_deal_left" template="MW_DailyDeal::sidebar/calendar.phtml"></block>
+        </referenceContainer>
+
+        <referenceContainer name="sidebar.additional">
+            <block class="MW\DailyDeal\Block\Sidebar\TodayDeal" name="mw_today_deal_left" template="MW_DailyDeal::sidebar/todayDeal.phtml"></block>
+        </referenceContainer>
+    <!--</referenceContainer>-->
+</page>

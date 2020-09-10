@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">dailydeal_dealscheduler_form.dailydeal_dealscheduler_form_data_source</item>
+            <item name="deps" xsi:type="string">dailydeal_dealscheduler_form.dailydeal_dealscheduler_form_data_source</item>
+        </item>
+
+        <item name="layout" xsi:type="array">
+            <item name="type" xsi:type="string">tabs</item>
+            <item name="navContainerName" xsi:type="string">left</item>
+        </item>
+
+        <item name="label" xsi:type="string" translate="true">Setting Deal</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">dailydeal_dealscheduler_form</item>
+        </item>
+
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="array">
+                <item name="name" xsi:type="string">back</item>
+                <item name="label" xsi:type="string" translate="true">Back</item>
+                <item name="class" xsi:type="string">back</item>
+                <item name="url" xsi:type="string">*/*/</item>
+            </item>
+            <item name="save" xsi:type="string">Magento\CatalogRule\Block\Adminhtml\Edit\SaveButton</item>
+            <item name="reset" xsi:type="string">Magento\CatalogRule\Block\Adminhtml\Edit\ResetButton</item>
+            <item name="save_and_continue" xsi:type="string">Magento\CatalogRule\Block\Adminhtml\Edit\SaveAndContinueButton</item>
+            <item name="delete" xsi:type="string">Magento\CatalogRule\Block\Adminhtml\Edit\DeleteButton</item>
+        </item>
+    </argument>
+    <dataSource name="dailydeal_dealscheduler_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">MW\DailyDeal\Model\DataProvider</argument>
+            <argument name="name" xsi:type="string">dailydeal_dealscheduler_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">deal_scheduler_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="*/dealscheduler/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="setting_information">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Setting</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <field name="deal_scheduler_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">dealscheduler</item>
+                    <item name="dataScope" xsi:type="string">deal_scheduler_id</item>
+                </item>
+            </argument>
+        </field>
+        <field name="title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Deal Generator Title</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">dealscheduler</item>
+                    <item name="dataScope" xsi:type="string">title</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="deal_price">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Set Product Discount </item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">dealscheduler</item>
+                    <item name="dataScope" xsi:type="string">deal_price</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="deal_qty">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Limit Quantity of Each Sale Item to:</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">dealscheduler</item>
+                    <item name="dataScope" xsi:type="string">deal_qty</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="number_deal">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Set number of products to be on sale at same time</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">dealscheduler</item>
+                    <item name="dataScope" xsi:type="string">number_deal</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="number_day">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Set number of days in advance, deals are generated for</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">dealscheduler</item>
+                    <item name="dataScope" xsi:type="string">number_day</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="deal_time">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Deal Duration Cycle (in hours) </item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">dealscheduler</item>
+                    <item name="dataScope" xsi:type="string">deal_time</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="generate_type">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <!--<item name="dataType" xsi:type="string">boolean</item>-->
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">dealscheduler</item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="label" xsi:type="string" translate="true">At Random</item>
+                </item>
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Sequentially</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">0</item>
+                        <item name="label" xsi:type="string" translate="true">At Random</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="start_date_time">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">From</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-date" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="source" xsi:type="string">dealscheduler</item>
+                    <item name="dataScope" xsi:type="string">start_date_time</item>
+                </item>
+            </argument>
+        </field>
+        <field name="end_date_time">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">To</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">dealscheduler</item>
+                    <item name="dataScope" xsi:type="string">end_date_time</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-date" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="status">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <!--<item name="dataType" xsi:type="string">boolean</item>-->
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">dealscheduler</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="default" xsi:type="number">1</item>
+                    <item name="label" xsi:type="string" translate="true">Enabled</item>
+                </item>
+                <item name="options" xsi:type="array">
+                    <item name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Enabled</item>
+                    </item>
+                    <item name="2" xsi:type="array">
+                        <item name="value" xsi:type="number">2</item>
+                        <item name="label" xsi:type="string" translate="true">Disabled</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

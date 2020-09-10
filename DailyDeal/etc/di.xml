@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MW\DailyDeal\Api\Data\DDealInterface" type="MW\DailyDeal\Model\Dailydeal" />
+    <preference for="MW\DailyDeal\Api\Data\DealSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="MW\DailyDeal\Api\DailydealRepositoryInterface" type="MW\DailyDeal\Model\DealRepository" />
+    <type name="Magento\Catalog\Pricing\Price\SpecialPrice">
+        <plugin name="mw_after_get_special_price" type="MW\DailyDeal\Plugin\SpecialPrice" />
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="dailydeal_dealitems_listing_data_source" xsi:type="string">MW\DailyDeal\Model\ResourceModel\Dailydeal\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="dailydeal_dealitems_filterall_data_source" xsi:type="string">MW\DailyDeal\Model\ResourceModel\Dailydeal\Grid\AllCollection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="MW\DailyDeal\Model\ResourceModel\Dailydeal\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mw_dailydeal</argument>
+            <argument name="eventPrefix" xsi:type="string">dailydeal_dealitems_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">items_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">MW\DailyDeal\Model\ResourceModel\Dailydeal</argument>
+        </arguments>
+    </type>
+
+    <type name="MW\DailyDeal\Controller\Adminhtml\Dealitems">
+        <arguments>
+            <argument name="mainModelName" xsi:type="string">MW\DailyDeal\Model\Dailydeal</argument>
+            <argument name="mainCollectionName" xsi:type="string">MW\DailyDeal\Model\ResourceModel\Dailydeal\Collection</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="dailydeal_dealscheduler_listing_data_source" xsi:type="string">MW\DailyDeal\Model\ResourceModel\Dealscheduler\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="MW\DailyDeal\Model\ResourceModel\Dealscheduler\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mw_deal_scheduler</argument>
+            <argument name="eventPrefix" xsi:type="string">dailydeal_dealscheduler_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">items_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">MW\DailyDeal\Model\ResourceModel\Dealscheduler</argument>
+        </arguments>
+    </type>
+
+    <type name="MW\DailyDeal\Controller\Adminhtml\Dealscheduler">
+        <arguments>
+            <argument name="mainModelName" xsi:type="string">MW\DailyDeal\Model\Dealscheduler</argument>
+            <argument name="mainCollectionName" xsi:type="string">MW\DailyDeal\Model\ResourceModel\Dealscheduler\Collection</argument>
+        </arguments>
+    </type>
+</config>

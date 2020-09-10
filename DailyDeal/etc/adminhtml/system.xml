@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mageworld" translate="label" sortOrder="999998" class="mageworld-tab">
+            <label>Mage World</label>
+        </tab>
+        <section id="mw_dailydeal" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Daily Deal Pro</label>
+            <tab>mageworld</tab>
+            <resource>MW_DailyDeal::mw_dailydeal_config</resource>
+            <group id="group_general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="show_top_link" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Daily Deal on Top Link</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="sidebardeal" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Today's Deal block on</label>
+                    <source_model>MW\DailyDeal\Model\System\Config\Sidebar</source_model>
+                </field>
+
+                <field id="calendar" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Deals of Week block on</label>
+                    <source_model>MW\DailyDeal\Model\System\Config\Sidebar</source_model>
+                </field>
+
+                <field id="sidebaractive" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Active Deals block on</label>
+                    <source_model>MW\DailyDeal\Model\System\Config\Sidebar</source_model>
+                </field>
+
+                <field id="deallayout" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Daily Deal Page Layout</label>
+                    <source_model>MW\DailyDeal\Model\System\Config\Layout</source_model>
+                </field>
+
+                <!--<field id="columncount" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label># of Products per Row on Daily Deal Page</label>-->
+                <!--</field>-->
+
+                <field id="status_to_sold" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Status Order to Sold Deal</label>
+                    <source_model>MW\DailyDeal\Model\System\Config\OrderStatus</source_model>
+                </field>
+
+            </group>
+
+            <group id="deal_display" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Deal Display</label>
+
+                <field id="numberactive" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number of Active Deals to display at same time on 'Active Deal' and 'Deals of the Week' Block</label>
+                </field>
+
+                <field id="sort_by" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Deal Display Method</label>
+                    <source_model>MW\DailyDeal\Model\System\Config\Sortby</source_model>
+                </field>
+
+                <field id="today_deal_show_detail" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show deal details (Discount, You Save, Bought)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[Deal details will be shown on Today's Deal block and Daily Deal product page]]>
+                    </comment>
+                </field>
+
+                <field id="showqty" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Remaining Deal Quantity</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="show_description" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Deal Description</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="catalog_list_show_image" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="10" showInDefault="1" showInWebsite="1" >
+                    <label>Custom 'Sale Label' Image</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
+                    <upload_dir config="system" scope_info="1">mw_dailydeal</upload_dir>
+                </field>
+
+                <field id="show_custom_label_discount" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use dynamic Label Discount</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[Please see guide document to use]]>
+                    </comment>
+                </field>
+
+                <!--<field id="product_view_show_countdown" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Extend Product Page to show countdown timer</label>-->
+                    <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                    <!--<comment>-->
+                        <!--<![CDATA[Only set Yes if there is no other module extends product page to avoid conflict]]>-->
+                    <!--</comment>-->
+                <!--</field>-->
+
+            </group>
+
+            <group id="titles_messages" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Titles/Messages</label>
+                <field id="title" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"Today's Deal" Block Title</label>
+                </field>
+
+                <field id="productdetaillabel" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Countdown Timer Title</label>
+                </field>
+
+                <field id="deal_qty_on_product_page" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Remaining Deal Quantity Message on Product Page</label>
+                    <comment>
+                        <![CDATA[Default message: Hurry, there are only <span class="deal-qty">{{qty}} items</span> left!]]>
+                    </comment>
+                </field>
+
+                <field id="deal_qty_on_catalog_page" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Remaining Deal Quantity Message on Deal Blocks and Categories Page</label>
+                    <comment>
+                        <![CDATA[Default message: Hurry, just <span class="deal-qty">{{qty}} items</span> left!]]>
+                    </comment>
+                </field>
+
+            </group>
+
+            <group id="deal_colors" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Colors</label>
+                <field id="schemecolor" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Color Scheme - General</label>
+                    <comment>
+                        <![CDATA[Choose color (Scroll over vertical bar, then move circle to desired color in left hand box, save setting with ball in lower right corner)]]>
+                    </comment>
+                    <frontend_model>MW\DailyDeal\Block\Adminhtml\Color</frontend_model>
+                </field>
+
+                <field id="countdowncolor" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Countdown Timer Color</label>
+                    <frontend_model>MW\DailyDeal\Block\Adminhtml\Color</frontend_model>
+                </field>
+
+                <field id="highlight_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Highlight Color for 'price/discount/items left'</label>
+                    <frontend_model>MW\DailyDeal\Block\Adminhtml\Color</frontend_model>
+                </field>
+            </group>
+
+            <group id="admin_notification" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Admin Notification</label>
+
+                <field id="notify_admin" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notify Admin when no deals are active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="admin_email" translate="label" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Admin email</label>
+                </field>
+
+            </group>
+
+        </section>
+    </system>
+</config>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Deals</title>
+        <link src="MW_DailyDeal::js/form_deal.js"/>
+    </head>
+    <body>
+        <referenceBlock name="menu">
+            <action method="setActive">
+                <argument name="itemId" xsi:type="string">MW_DailyDeal::Dealitems</argument>
+            </action>
+        </referenceBlock>
+        <!--<referenceContainer name="page.main.actions">-->
+            <!--<block class="Magento\Backend\Block\Store\Switcher" name="store_switcher">-->
+                <!--<action method="setUseConfirm">-->
+                    <!--<argument name="params" xsi:type="string">1</argument>-->
+                <!--</action>-->
+            <!--</block>-->
+        <!--</referenceContainer>-->
+        <referenceContainer name="content">
+            <block class="MW\DailyDeal\Block\Adminhtml\Dealitems\Edit" name="deal_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="MW\DailyDeal\Block\Adminhtml\Dealitems\Edit\Tabs" name="deal_edit_tabs">
+                <block class="MW\DailyDeal\Block\Adminhtml\Dealitems\Edit\Tab\Mainform" name="deal_edit_tab_deal"/>
+                <block class="MW\DailyDeal\Block\Adminhtml\Dealitems\Edit\Tab\DealProduct" name="deal_edit_tab_product" as="deal_edit_tab_product"/>
+                <block class="MW\DailyDeal\Block\Adminhtml\Dealitems\Edit\Tab\Serializer" name="deal_edit_tabs.serilaze" as="deal_edit_tabs.serilaze">
+                    <arguments>
+                        <argument name="input_names" xsi:type="string">position</argument>
+                        <argument name="callback" xsi:type="string">getSelectedDealitemsProducts</argument>
+                        <argument name="reload_param_name" xsi:type="string">dealitems</argument>
+                        <argument name="input_element_name" xsi:type="string">product_ids</argument>
+                    </arguments>
+                </block>
+                <block class="MW\DailyDeal\Block\Adminhtml\Dealitems\Edit\Tab\Report" name="deal_edit_tab_deal_report"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
