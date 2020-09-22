@@ -101,7 +101,8 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
 			[
 				'label'	=> __('Amount'),
 				'name'	=> 'reward_points_amount',
-				'class'	=> 'validate-digits'
+				'class'	=> 'validate-digits',
+                'required'  => true,
 			]
 		);
 		$balanceFieldset->addField(

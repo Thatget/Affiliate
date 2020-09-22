@@ -16,6 +16,7 @@
     <type name="Magento\Checkout\Model\PaymentInformationManagement">
         <plugin name="set_payment_data_before_save" type="MW\RewardPoints\Plugin\Model\SavePaymentPlugin" sortOrder="10"/>
     </type>
+    <preference for="Magento\Quote\Model\ResourceModel\Quote\Item\Collection" type="MW\RewardPoints\Model\ResourceModel\Quote\Item\Collection" />
 
     <!-- Rewrite  -->
 

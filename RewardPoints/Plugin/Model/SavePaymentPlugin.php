@@ -56,9 +56,7 @@ class SavePaymentPlugin extends Rewardpoints
         $amountTotal = $this->getCurrentRewardPoints();
         if (($amountTotal-$amountUsed2) < 0){
             throw new \Magento\Framework\Exception\CouldNotSaveException(__("Your point amount has just been updated "));
-            //throw new LocalizedException(__("You need to add more 'This is my custom error !!!!!'"));
         }else {
-            // Add your logic before Save Payment information
             return [$cartId, $paymentMethod, $billingAddress];
         }
     }
