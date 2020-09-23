@@ -42,6 +42,11 @@ class CollectTotalBefore implements ObserverInterface
     protected $_dataHelper;
 
     /**
+     * @var \MW\RewardPoints\Model\ProductsellpointFactory
+     */
+    protected $_productsellpointFactory;
+
+    /**
      * @var \MW\RewardPoints\Model\CustomerFactory
      */
     protected $_memberFactory;
@@ -54,6 +59,7 @@ class CollectTotalBefore implements ObserverInterface
      * @param \Magento\Customer\Model\Session $customerSession
      * @param \Magento\Framework\Message\ManagerInterface $messageManager
      * @param \MW\RewardPoints\Helper\Data $dataHelper
+     * @param \MW\RewardPoints\Model\ProductsellpointFactory $productsellpointFactory
      * @param \MW\RewardPoints\Model\CustomerFactory $memberFactory
      */
     public function __construct(
@@ -64,6 +70,7 @@ class CollectTotalBefore implements ObserverInterface
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Framework\Message\ManagerInterface $messageManager,
         \MW\RewardPoints\Helper\Data $dataHelper,
+        \MW\RewardPoints\Model\ProductsellpointFactory $productsellpointFactory,
         \MW\RewardPoints\Model\CustomerFactory $memberFactory
     ) {
         $this->_request = $request;
@@ -73,6 +80,7 @@ class CollectTotalBefore implements ObserverInterface
         $this->_customerSession = $customerSession;
         $this->_messageManager = $messageManager;
         $this->_dataHelper = $dataHelper;
+        $this->_productsellpointFactory = $productsellpointFactory;
         $this->_memberFactory = $memberFactory;
     }
 
@@ -132,7 +140,7 @@ class CollectTotalBefore implements ObserverInterface
             if ($quote->getCustomerId()) {
                 $productSellPoint  = 0;
 
-                foreach ($quote->getAllItems() as $item) {
+                foreach ($quote->getAllVisibleItems() as $item) {
                     $qty     = $item->getQty();
                     $product = $this->_productFactory->create()->load($item->getProductId());
 
@@ -160,6 +168,32 @@ class CollectTotalBefore implements ObserverInterface
                                 }
                             }
                             break;
+                        case 'configurable':
+                            // Total points = parent points + all children points
+                            $mwRewardPointSell = $product->getData('mw_reward_point_sell_product');
+                            if ($mwRewardPointSell > 0) {
+                                $productSellPoint += $qty * $mwRewardPointSell;
+                            } else {
+                                if ($info = $item->getProduct()->getCustomOption('info_buyRequest')) {
+                                    //$infoArr = unserialize($info->getValue());
+                                    $infoArr = json_decode($info->getValue(),true);
+                                    if(!$infoArr){
+                                        $infoArr = unserialize($info->getValue());
+                                    }
+                                    foreach ($infoArr['super_attribute'] as $attributeId => $value) {
+                                        $collection = $this->_productsellpointFactory->create()->getCollection()
+                                            ->addFieldToFilter('product_id', $product->getId())
+                                            ->addFieldToFilter('option_id', $value)
+                                            ->addFieldToFilter('option_type_id', $attributeId)
+                                            ->addFieldToFilter('type_id', 'super_attribute')
+                                            ->getFirstItem();
+
+                                        $productSellPoint += intval($collection->getSellPoint());
+                                    }
+                                }
+                            }
+                            break;
+
                     }
                 }
 
